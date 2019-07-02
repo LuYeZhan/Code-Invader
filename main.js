@@ -25,9 +25,12 @@ function main() {
     var gameScreen = buildDom(`
       <section>
         <canvas width= "800" height= "600"> </canvas>
-        <audio src=""></audio>
       </section>
     `);
+    // var music = new Audio('src = "https://www.nasa.gov/62282main_countdown_launch.wav"');
+    // music.play();
+    // music.addEventListener('loadeddata', () => {
+    //   let duration = music.duration;
     var canvas = document.querySelector('canvas');
     var gameInstance = new Game(canvas);
     gameInstance.gameOverCallback(createGameOverScreen);
@@ -36,13 +39,15 @@ function main() {
       gameInstance.player.setDirection(0);
     });
     document.addEventListener('keydown', function(event){
+      if(event.code==='Space'){
+        gameInstance.createBullet();
+      }
       if(event.key === 'ArrowRight'){
         gameInstance.player.setDirection(1);
       } else if (event.key === 'ArrowLeft'){
         gameInstance.player.setDirection(-1);
       };
     });
-  //  setTimeout(createGameOverScreen, 3000);
   };
  // createGameScreen();
 

@@ -3,8 +3,8 @@
 function Player (canvas) {
   this.canvas = canvas;
   this.ctx = canvas.getContext('2d');
-  this.height = 30;
-  this.width = 30;
+  this.height = 60;
+  this.width = 60;
   this.x = (this.canvas.width/2)
   this.y = (this.canvas.height) - (this.height / 2) - this.height ;
   this.lives = 3;
@@ -19,8 +19,13 @@ Player.prototype.move = function () {
 };
 
 Player.prototype.draw = function () {
-  this.ctx.fillStyle = this.color;
-  this.ctx.fillRect(this.x, this.y, this.width, this.height)
+  var avion = new Image();
+    this.type === 'avion';
+    avion.src = 'images/avion.jpg';
+    this.y = (this.canvas.height) - (this.height / 2) - this.height ;
+    this.ctx.drawImage(avion, this.x, this.y, this.width, this.height);
+  // this.ctx.fillStyle = this.color;
+  // this.ctx.fillRect(this.x, this.y, this.width, this.height)
 };
 
 Player.prototype.setDirection = function (newDirection){
