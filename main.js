@@ -25,20 +25,22 @@ function main() {
 
   function createGameScreen(){
     var gameScreen = buildDom(`
-      <section id= "screen">
+      <section>
         <p id ="score"> score : <span> </p> 
         <canvas width= "800" height= "600">
         </canvas>
       </section>
     `);
-    var canvas = document.querySelector('canvas');
+
+    var canvas = document.querySelector("canvas");
     var gameInstance = new Game(canvas);
     gameInstance.gameOverCallback(createGameOverScreen);
     gameInstance.startGame();
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
     score = document.querySelector('span');
     score.innerText = gameInstance.player.score;
     document.addEventListener('keyup', function(event) {
-      console.log(event)
       if(event.key === "ArrowRight"){
         gameInstance.player.removeSetDirection('right');
       }   // movimiento hacia arriba y abajo
@@ -81,15 +83,18 @@ function main() {
   };
  // createGameScreen();
 
-  function createGameOverScreen(){
+  function createGameOverScreen(score){
     var createGameOverScreen = buildDom (`
       <section id= "screen">
         <h1>Game Over</h1>
         <button>Restart</button>
+        <p id= "high-score"></p>
       </section>
-    `);
+    `); console.log(score);
     var buttonRestart = document.querySelector('button');
     buttonRestart.addEventListener('click', createGameScreen);
+    var highScore = document.querySelector('#high-score');
+    highScore.innerHTML = 'High Score: ' + score
   };
  // createGameOverScreen();
   createSplashScreen();

@@ -1,11 +1,11 @@
 'use strict';
 
-function Enemy(canvas, randomX, image){
+function Enemy(canvas, randomX, image, velocity){
   this.canvas = canvas;
   this.ctx = this.canvas.getContext('2d');
   this.y = 0;
   this.x = randomX;
-  this.velocity = 2;
+  this.velocity = velocity;
   this.direction = 1;
 //  this.color = 'red';
   this.width = 35;
