@@ -5,7 +5,7 @@ function Bullet(canvas, x, y) {
   this.ctx = canvas.getContext("2d");
   this.y = y;
   this.x = x + 35;
-  this.velocity = 3;
+  this.velocity = 5;
   this.direction = -1;
   this.color = "yellow";
   this.width = 30;
@@ -17,6 +17,7 @@ Bullet.prototype.draw = function() {
   this.type === 'disparos';
   disparos.src = "images/code.png";
   this.ctx.drawImage(disparos, this.x, this.y, this.width, this.height);
+  //  To fill the bullet with a color
   //  this.ctx.fillStyle = this.color;
   //  this.ctx.fillRect(this.x, this.y, this.width, this.height);
 };

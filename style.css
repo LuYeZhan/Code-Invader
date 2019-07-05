@@ -5,6 +5,7 @@
   position: relative;
   margin-top: 15%;
   padding:5%;
+  background-color: rgba(0,0,0,0.9);
 }
 
 html {
@@ -35,14 +36,22 @@ body {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 147%;
+  background-image: url('images/matrixgif.gif')
 }
 
-#score {
+#high-score, #score{
   color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
 }
+
 
 h1 {
-  margin-top: 17%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 50px;
   color: white;
 }
@@ -54,6 +63,13 @@ h3 {}
 p {
   margin: 0;
   color: white;
+}
+pre {
+  margin: 0;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 section {
@@ -132,8 +148,8 @@ section.testimonials .button {
 }
 
 canvas {
-  background-color: black; 
+  background-color: rgba(0,0,0,0.9);
    /* background-image: url("images/background-code.jpg");  */
- 
+  
 }
 

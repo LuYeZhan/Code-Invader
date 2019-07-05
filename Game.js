@@ -10,16 +10,15 @@ function Game(canvas) {
   this.bullets = [];
   this.lvlUp = false;
   this.velocity = 2;
-  // this.startGameSong = new Audio ('sounds/space-odyssey.mp3')
-  // this.gameSong = new Audio ('sounds/07 Escape (The Pina Colada Song).mp3')
-  // this.gameOverSong = new Audio ('sounds/02 VCR.mp3')
+ // this.startGameSong = 
+  this.gameSong = new Audio ('sounds/02 VCR.mp3')
+  this.lvlUpImage = new Image ('images/macimagen.png')
 }
 
 Game.prototype.startGame = function() {
   // Play de la primera canción
-  // this.startGameSong.pause();
-  // this.gameOverSong.pause();
-  // this.gameSong.play();
+
+  this.gameSong.play();
   //inicializar player y enemies
   this.player = new Player(this.canvas, this.createBullet);
   var imageArr = [
@@ -56,12 +55,13 @@ Game.prototype.startGame = function() {
 };
 
 Game.prototype.increaseLvl = function() {
-  if (this.player.score !== 0 && this.player.score % 10 === 0 && this.lvlUp) {
+  if (this.player.score !== 0 && this.player.score % 5 === 0 && this.lvlUp) {
     this.enemies.forEach(enemy => {
-      enemy.velocity = enemy.velocity + 0.5;
+      enemy.velocity = enemy.velocity + 1.5;
     });
-    this.velocity += 0.5;
+    this.velocity += 1.5;
     this.lvlUp = false;
+    this.lvlUpImage.display
   }
 };
 
@@ -95,7 +95,6 @@ Game.prototype.update = function() {
 Game.prototype.createBullet = function() {
   var bullet = new Bullet(this.canvas, this.player.x, this.player.y);
   this.bullets.push(bullet);
-
 };
 
 Game.prototype.clear = function() {
@@ -126,9 +125,7 @@ Game.prototype.checkCollisions = function() {
       this.player.lives--;
       if (this.player.lives === 0) {
         this.isGameOver = true;
-        // console.log("gameover")
-        // this.gameSong.pause();
-        // this.gameOverSong.play();
+        this.gameSong.pause();
       }
     }
   });
@@ -149,7 +146,7 @@ Game.prototype.checkBulletCollissions = function() {
         this.enemies.splice(indiceEnemy, 1);
         this.bullets.splice(indiceBullet, 1);
         this.player.score++;
-        if (this.player.score % 10 === 0) {
+        if (this.player.score % 5 === 0) {
           this.lvlUp = true;
         }
         score.innerText = this.player.score;

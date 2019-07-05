@@ -15,7 +15,10 @@ function main() {
       <section id= "screen">
         <h1>Code Invader</h1>
         <button>Start</button>
-        <p>Push space to fire, avoid the mighty loops! </p>
+        <pre>
+        Hello!  To code use space.
+        Up, down, left and right to Escape from js.  
+        You got 3 chances before you get blocked. </pre>
       </section>
     `);
     var startButton = document.querySelector('button');
@@ -26,7 +29,7 @@ function main() {
   function createGameScreen(){
     var gameScreen = buildDom(`
       <section>
-        <p id ="score"> score : <span> </p> 
+        <p id ="score"> lines of code :<span> </p> 
         <canvas width= "800" height= "600">
         </canvas>
       </section>
@@ -45,34 +48,33 @@ function main() {
         gameInstance.player.removeSetDirection('right');
       }   // movimiento hacia arriba y abajo
       else if (event.key === 'ArrowUp'){
-        //gameInstance.player.setDirection('up');
+        
         gameInstance.player.removeSetDirection('up');  
       } else if (event.key === 'ArrowDown'){
-        // gameInstance.player.setDirection('down');
+       
         gameInstance.player.removeSetDirection('down');
       } 
       else if (event.key === 'ArrowLeft'){
         gameInstance.player.removeSetDirection('left');       
       } else if(event.keyCode === 32){
-        console.log("space lifted")
         gameInstance.player.removeSetDirection('shoot'); 
       }
     });
     document.addEventListener('keydown', function(event){
       if(event.code==='Space'){
-        // gameInstance.createBullet();
+        
         gameInstance.player.setNewDirection('shoot');
       }
       else if(event.key === 'ArrowRight'){
-       // gameInstance.player.setDirection('right');
+       
         gameInstance.player.setNewDirection('right');
       } 
         // movimiento hacia arriba y abajo
       else if (event.key === 'ArrowUp'){
-        //gameInstance.player.setDirection('up');
+        
         gameInstance.player.setNewDirection('up');  
       } else if (event.key === 'ArrowDown'){
-        // gameInstance.player.setDirection('down');
+        
         gameInstance.player.setNewDirection('down');
       } 
       else if (event.key === 'ArrowLeft'){
@@ -84,17 +86,24 @@ function main() {
  // createGameScreen();
 
   function createGameOverScreen(score){
+
     var createGameOverScreen = buildDom (`
       <section id= "screen">
-        <h1>Game Over</h1>
+        <h1>You are blocked!</h1>
         <button>Restart</button>
         <p id= "high-score"></p>
       </section>
-    `); console.log(score);
+    `);
+    var gameOverSong = new Audio ('sounds/07 Escape (The Pina Colada Song).mp3')
+    gameOverSong.currentTime = 36;
+    gameOverSong.play();
     var buttonRestart = document.querySelector('button');
-    buttonRestart.addEventListener('click', createGameScreen);
+    buttonRestart.addEventListener('click', function() {
+      gameOverSong.pause();
+      createGameScreen()});
     var highScore = document.querySelector('#high-score');
-    highScore.innerHTML = 'High Score: ' + score
+    highScore.innerHTML = 'lines of code: ' + score
+
   };
  // createGameOverScreen();
   createSplashScreen();
